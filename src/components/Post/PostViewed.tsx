@@ -28,7 +28,7 @@ class PostViewed extends React.Component {
           title={`Viewed posts list`}
           extra={[
             !!total && (
-              <Button type="primary" onClick={this.showConfirm}>
+              <Button type="primary" onClick={this.showConfirm} key="clear-btn">
                 Clear
               </Button>
             ),

@@ -22,7 +22,6 @@ class UserStore {
   };
 
   fetchUsers = async (page: number) => {
-    console.log(page);
     try {
       this.setLoading(true);
       let userData = await userApi.getList({
