@@ -1,9 +1,10 @@
-import { decorate, observable, action, computed, toJS } from "mobx";
+import { decorate, observable, action, computed, reaction, toJS } from "mobx";
 import { message } from "antd";
 import { Post } from "../../services/PostService";
 
+const localPosts = JSON.parse(localStorage?.getItem("posts") || "");
 class PostsStore {
-  posts: Post[] = [];
+  posts: Post[] = localPosts || [];
 
   get total() {
     return this.posts.length;
@@ -19,6 +20,11 @@ class PostsStore {
     this.posts = [];
     message.success("Posts successfully cleared");
   }
+
+  onChange = reaction(
+    () => this.total,
+    () => localStorage.setItem("posts", JSON.stringify(this.posts)),
+  );
 }
 
 decorate(PostsStore, {
