@@ -2,7 +2,7 @@ import { decorate, observable, action, computed, reaction, toJS } from "mobx";
 import { message } from "antd";
 import { Post } from "../../services/PostService";
 
-const localPosts = JSON.parse(localStorage?.getItem("posts") || "");
+const localPosts = JSON.parse(localStorage?.getItem("posts") || "null");
 class PostsStore {
   posts: Post[] = localPosts || [];
 
